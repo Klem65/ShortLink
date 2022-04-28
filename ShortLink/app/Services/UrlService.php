@@ -10,7 +10,11 @@ use Illuminate\Support\Str;
  */
 class UrlService
 {
-    public function getShortUrl($url)
+    /**
+     * @param string $url
+     * @return string
+     */
+    public function getShortUrl(string $url): string
     {
         $urlEntity = Url::query()->where('url_original', '=', $url)->first();
         if ($urlEntity) {
@@ -25,7 +29,10 @@ class UrlService
         return $shortUrl;
     }
 
-    private function generateShortUrl()
+    /**
+     * @return string
+     */
+    private function generateShortUrl(): string
     {
         return Str::random(7);
     }
