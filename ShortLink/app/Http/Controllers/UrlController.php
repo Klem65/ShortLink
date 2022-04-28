@@ -7,7 +7,7 @@ use App\Models\Url;
 use App\Services\UrlService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Routing\Redirector;
+use Illuminate\Http\RedirectResponse;
 
 class UrlController extends Controller
 {
@@ -39,9 +39,9 @@ class UrlController extends Controller
 
     /**
      * @param $code
-     * @return Redirector
+     * @return RedirectResponse
      */
-    public function redirect($code): Redirector
+    public function redirect($code): RedirectResponse
     {
         $url = Url::query()->where('url_short', '=', $code)->first();
         return redirect($url->url_original);
