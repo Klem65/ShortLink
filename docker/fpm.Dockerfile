@@ -10,14 +10,13 @@ RUN addgroup -g ${GID} --system laravel
 RUN adduser -G laravel --system -D -s /bin/sh -u ${UID} laravel
 
 RUN apk update \
-  && apk add curl git vim
+  && apk add curl git vim nodejs npm
 
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions \
  /usr/local/bin/
 
 RUN chmod +x /usr/local/bin/install-php-extensions && \
-    install-php-extensions gd xdebug date dom filter json pcre session tokenizer pdo pdo_mysql simplexml spl  \
-    @composer ctype iconv
+    install-php-extensions xdebug pdo pdo_mysql @composer
 
 USER laravel
 
