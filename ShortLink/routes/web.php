@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [\App\Http\Controllers\UrlController::class, 'index'])->name('index');
+
+Route::post('url', [\App\Http\Controllers\UrlController::class, 'url'])->name('url');
+
+Route::get('short/{code}', [\App\Http\Controllers\UrlController::class, 'redirect'])->name('short_url');
